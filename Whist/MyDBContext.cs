@@ -21,12 +21,14 @@ namespace Whist
         {
             //GameRoundPlayers
             mb.Entity<GameRounds>().HasKey(r => new { r.Id });
-            /*mb.Entity<GameRounds>()
-                .HasOne(r => r.Games)
-                .WithMany(g => g.Id)
-                .HasForeignKey(r => r.Game_Id);*/
+            mb.Entity<GameRounds>()
+                .HasOne<Games>(r => r.Games)
+                .WithMany(r => r.GameRoundsList)
+                .HasForeignKey(r => r.Game_Id);
+            //Mangler foreign key
 
             //GameRounds
+            
 
             //Games
             mb.Entity<Games>()
@@ -34,6 +36,10 @@ namespace Whist
 
             // Location
             mb.Entity<Location>().HasKey(l => new { l.Id });
+            mb.Entity<Location>()
+                .HasOne<Games>(r => r.Games)
+                .WithMany(r => r.LocationList)
+                .HasForeignKey(r => r.Game_Id);
 
             //GamePlayers
             mb.Entity<GamePlayers>()
@@ -50,6 +56,10 @@ namespace Whist
                 .HasKey(p => new {p.id});
 
             //SoleRoundWinner
+            mb.Entity<SoleRoundWinner>()
+                .HasOne<GameRounds>(a => a.gameRound)
+                .WithMany(a => a.SoleRoundWinnerList)
+                .HasForeignKey(a => a.GameRoundId);
 
             //Types
 
