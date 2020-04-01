@@ -15,5 +15,6 @@ namespace Whist.Models
         public bool updates { get; set; }
         public List<GameRounds> GameRoundsList { get; set; }
         public List<Location> LocationList { get; set; }
+        public List<GamePlayers> gamePlayersListForGames { get; set; }
     }
 }
