@@ -12,6 +12,5 @@ namespace Whist.Models
         public string lastName { get; set; }
 
         public List<GamePlayers> gamePlayersList { get; set; }
-
     }
 }

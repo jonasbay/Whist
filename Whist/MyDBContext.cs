@@ -28,6 +28,7 @@ namespace Whist
             
 
             //GameRounds
+            
 
             //Games
             mb.Entity<Games>().HasKey(g => new { g.Id });
@@ -46,6 +47,10 @@ namespace Whist
                 .HasKey(p => new {p.id});
 
             //SoleRoundWinner
+            mb.Entity<SoleRoundWinner>()
+                .HasOne<GameRounds>(a => a.gameRound)
+                .WithMany(a => a.SoleRoundWinnerList)
+                .HasForeignKey(a => a.GameRoundId);
 
             //Types
 
