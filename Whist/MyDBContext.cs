@@ -12,10 +12,20 @@ namespace Whist
         protected override void OnConfiguring(DbContextOptionsBuilder ob)
         {
             // For SQLServer file, this is
-            ob.UseSqlServer("Data Source=127.0.0.1,1433;Database=XXXX;User ID=SA;Password=SecurePassword1!");
+            ob.UseSqlServer("Data Source=127.0.0.1,1433;Database=Whist;User ID=SA;Password=SecurePassword1!");
         }
 
         public DbSet<GamePlayers> gameplayers { get; set; }
+        public DbSet<GameRoundPlayers> GameRoundPlayers { get; set; }
+        public DbSet<GameRounds> GameRounds { get; set; }
+        public DbSet<Games> Games { get; set; }
+        public DbSet<Location> Location { get; set; }
+        public DbSet<NormalRound> NormalRound { get; set; }
+        public DbSet<Players> Players { get; set; }
+        public DbSet<SoleRound> SoleRound { get; set; }
+        public DbSet<SoleRoundWinner> SoleRoundWinner { get; set; }
+        //public DbSet<Types> Types { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder mb)
         {
@@ -65,19 +75,25 @@ namespace Whist
                 .HasForeignKey(a => a.GameRoundId);
 
             //Types
-            mb.Entity<Types>().HasKey(r => new { r.Id });
+            //mb.Entity<Types>().HasKey(r => new { r.Id });
             mb.Entity<Types>()
-                .HasOne<GameRounds>(r => r.GameRounds)
-                .WithMany(r => r.TypesList)
-                .HasForeignKey(r => r.Id);
+                .HasOne(r => r.GameRounds)
+                .WithOne(r => r.Types)
+                .HasForeignKey<GameRounds>();
 
             //SoleRound
+            mb.Entity<SoleRound>().HasNoKey();
             /*mb.Entity<SoleRound>()
-                .HasOne<GameRounds>(s => s.GameRounds)
+                .HasOne(s => s.GameRounds)
                 .WithOne(s => s.SoleRound)
-                .HasForeignKey(s => s.GameRoundId);*/
+                .HasForeignKey<GameRounds>();*/
 
             //NormalRound
+            mb.Entity<NormalRound>().HasNoKey();
+            /*mb.Entity<NormalRound>()
+                .HasOne(s => s.GameRounds)
+                .WithOne(s => s.NormalRound)
+                .HasForeignKey<GameRounds>();*/
         }
     }
     

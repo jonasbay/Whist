@@ -10,7 +10,5 @@ namespace Whist.Models
 
         public Type SoloType { get; set; }
 
-        public GameRounds GameRounds { get; set; }
-
     }
 }
