@@ -11,5 +11,7 @@ namespace Whist.Models
         public int playerPosition { get; set; }
         public int playerId { get; set; }
         public int points { get; set; }
+
+        public Players player { get; set; }
     }
 }
