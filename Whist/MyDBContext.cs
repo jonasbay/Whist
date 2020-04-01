@@ -23,7 +23,7 @@ namespace Whist
 
         //Games
 
-        // Location
+        //Location
 
         //GamePlayers
 
@@ -31,7 +31,7 @@ namespace Whist
 
         //SoleRoundWinner
 
-        //Types
+    //Types
 
         //SoleRound
 
