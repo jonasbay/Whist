@@ -20,9 +20,10 @@ namespace Whist
             //GameRoundPlayers
             mb.Entity<GameRounds>().HasKey(r => new { r.Id });
             /*mb.Entity<GameRounds>()
-                .HasOne(r => r.Games)
+                .HasOne<Games>(r => r.Games)
                 .WithMany(g => g.Id)
                 .HasForeignKey(r => r.Game_Id);*/
+            
 
             //GameRounds
 
