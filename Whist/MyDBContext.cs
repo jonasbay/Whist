@@ -72,6 +72,10 @@ namespace Whist
                 .HasForeignKey(r => r.Id);
 
             //SoleRound
+            /*mb.Entity<SoleRound>()
+                .HasOne<GameRounds>(s => s.GameRounds)
+                .WithOne(s => s.SoleRound)
+                .HasForeignKey(s => s.GameRoundId);*/
 
             //NormalRound
         }

@@ -15,6 +15,7 @@ namespace Whist.Models
         public bool started { get; set; }
         public Type RoundType { get; set; }
         public Games Games { get; set; }
+        public SoleRound SoleRound { get; set; }
 
         public List<GameRoundPlayers> GameRoundPlayersList { get; set; }
         public List<SoleRoundWinner> SoleRoundWinnerList { get; set; }
