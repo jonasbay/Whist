@@ -11,6 +11,6 @@ namespace Whist.Models
         public int PlayerPos { get; set; }
         public int Tricks { get; set; }
 
-        public GameRounds gameRound { get; set; }
+        public GameRounds GameRound { get; set; }
     }
 }

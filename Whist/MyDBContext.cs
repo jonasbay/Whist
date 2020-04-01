@@ -24,14 +24,14 @@ namespace Whist
             mb.Entity<GameRounds>()
                 .HasOne<Games>(t => t.Games)
                 .WithMany(t => t.GameRoundsList)
-                .HasForeignKey(t => t.Game_Id);
+                .HasForeignKey(t => t.GameId);
             
 
             //GameRoundPlayer
             mb.Entity<GameRoundPlayers>()
-                .HasOne<GameRounds>(gr => gr.gameRounds)
+                .HasOne<GameRounds>(gr => gr.GameRounds)
                 .WithMany(gr => gr.GameRoundPlayersList)
-                .HasForeignKey(gr => gr.gameRoundId);
+                .HasForeignKey(gr => gr.GameRoundId);
 
             //Games
             mb.Entity<Games>()
@@ -46,21 +46,21 @@ namespace Whist
 
             //GamePlayers
             mb.Entity<GamePlayers>()
-                .HasOne<Players>(r => r.player)
-                .WithMany(r => r.gamePlayersListForPlayers)
-                .HasForeignKey(r => r.playerId);
+                .HasOne<Players>(r => r.Player)
+                .WithMany(r => r.GamePlayersListForPlayers)
+                .HasForeignKey(r => r.PlayerId);
             mb.Entity<GamePlayers>()
-                .HasOne<Games>(g => g.games)
+                .HasOne<Games>(g => g.Games)
                 .WithMany(g => g.gamePlayersListForGames)
-                .HasForeignKey(g => g.gameId);
+                .HasForeignKey(g => g.GameId);
 
             //Players
             mb.Entity<Players>()
-                .HasKey(p => new {p.id});
+                .HasKey(p => new {id = p.Id});
 
             //SoleRoundWinner
             mb.Entity<SoleRoundWinner>()
-                .HasOne<GameRounds>(a => a.gameRound)
+                .HasOne<GameRounds>(a => a.GameRound)
                 .WithMany(a => a.SoleRoundWinnerList)
                 .HasForeignKey(a => a.GameRoundId);
 
