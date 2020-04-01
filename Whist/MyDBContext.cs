@@ -14,27 +14,29 @@ namespace Whist
             // For SQLServer file, this is
             ob.UseSqlServer("Data Source=127.0.0.1,1433;Database=XXXX;User ID=SA;Password=SecurePassword1!");
         }
-    }
-    protected override void OnModelCreating(ModelBuilder mb)
-    {
-        //GameRoundPlayers
 
-        //GameRounds
+        protected override void OnModelCreating(ModelBuilder mb)
+        {
+            //GameRoundPlayers
 
-        //Games
+            //GameRounds
+
+            //Games
 
         //Location
 
-        //GamePlayers
+            //GamePlayers
 
-        //Players
+            //Players
 
-        //SoleRoundWinner
+            //SoleRoundWinner
 
-    //Types
+            //Types
 
-        //SoleRound
+            //SoleRound
 
-        //NormalRound
+            //NormalRound
+        }
     }
+    
 }
