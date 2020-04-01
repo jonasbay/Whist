@@ -9,10 +9,10 @@ namespace Whist.Models
     {
         public int Id { get; set; }
         public int LocationId { get; set; }
-        public string description { get; set; }
-        public bool started { get; set; }
-        public bool ended { get; set; }
-        public bool updates { get; set; }
+        public string Description { get; set; }
+        public bool Started { get; set; }
+        public bool Ended { get; set; }
+        public bool Updates { get; set; }
         public List<GameRounds> GameRoundsList { get; set; }
         public List<Location> LocationList { get; set; }
         public List<GamePlayers> gamePlayersListForGames { get; set; }

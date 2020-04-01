@@ -7,10 +7,10 @@ namespace Whist.Models
 {
     public class GameRoundPlayers
     {
-        public int gameRoundId { get; set; }
-        public int bye { get; set; }
-        public int points { get; set; }
+        public int GameRoundId { get; set; }
+        public int Bye { get; set; }
+        public int Points { get; set; }
 
-        public GameRounds gameRounds { get; set; }
+        public GameRounds GameRounds { get; set; }
     }
 }

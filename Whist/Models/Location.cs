@@ -8,8 +8,8 @@ namespace Whist.Models
     public class Location
     {
         public int Id { get; set; }
-        public string name { get; set; }
-        public int Game_Id { get; set; }
+        public string Name { get; set; }
+        public int GameId { get; set; }
         public Games Games { get; set; }
     }
 }
