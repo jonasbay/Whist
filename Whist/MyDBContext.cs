@@ -20,11 +20,11 @@ namespace Whist
         protected override void OnModelCreating(ModelBuilder mb)
         {
             //GameRounds
-            mb.Entity<GameRounds>().HasKey(r => new { r.Id });
+            mb.Entity<GameRounds>().HasKey(t => new { t.Id });
             mb.Entity<GameRounds>()
-                .HasOne<Games>(r => r.Games)
-                .WithMany(r => r.GameRoundsList)
-                .HasForeignKey(r => r.Game_Id);
+                .HasOne<Games>(t => t.Games)
+                .WithMany(t => t.GameRoundsList)
+                .HasForeignKey(t => t.Game_Id);
             
 
             //GameRoundPlayer
@@ -66,10 +66,10 @@ namespace Whist
 
             //Types
             mb.Entity<Types>().HasKey(r => new { r.Id });
-           /* mb.Entity<Types>()
-                .HasOne<GameRounds>(r => r.Games)
-                .WithMany(r => r.GameRoundsList)
-                .HasForeignKey(r => r.Game_Id);*/
+            mb.Entity<Types>()
+                .HasOne<GameRounds>(r => r.GameRounds)
+                .WithMany(r => r.TypesList)
+                .HasForeignKey(r => r.Id);
 
             //SoleRound
 
