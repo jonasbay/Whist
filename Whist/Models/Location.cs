@@ -9,7 +9,7 @@ namespace Whist.Models
     {
         public int Id { get; set; }
         public string name { get; set; }
-        public int Game_Id { get; set; }
+        public int GameId { get; set; }
         public Games Games { get; set; }
     }
 }

@@ -24,8 +24,7 @@ namespace Whist
             mb.Entity<GameRounds>()
                 .HasOne<Games>(r => r.Games)
                 .WithMany(r => r.GameRoundsList)
-                .HasForeignKey(r => r.Game_Id);
-            //Mangler foreign key
+                .HasForeignKey(r => r.GameId);
 
             //GameRounds
             
@@ -38,7 +37,7 @@ namespace Whist
             mb.Entity<Location>()
                 .HasOne<Games>(r => r.Games)
                 .WithMany(r => r.LocationList)
-                .HasForeignKey(r => r.Game_Id);
+                .HasForeignKey(r => r.GameId);
 
             //GamePlayers
             mb.Entity<GamePlayers>()
