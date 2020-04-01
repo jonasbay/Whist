@@ -13,5 +13,6 @@ namespace Whist.Models
         public int points { get; set; }
 
         public Players player { get; set; }
+        public Games games { get; set; }
     }
 }

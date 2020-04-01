@@ -10,5 +10,7 @@ namespace Whist.Models
         public int GameRoundId { get; set; }
         public int PlayerPos { get; set; }
         public int Tricks { get; set; }
+
+        public GameRounds gameRound { get; set; }
     }
 }
