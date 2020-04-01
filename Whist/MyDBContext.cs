@@ -15,19 +15,35 @@ namespace Whist
             ob.UseSqlServer("Data Source=127.0.0.1,1433;Database=XXXX;User ID=SA;Password=SecurePassword1!");
         }
 
+        public DbSet<GamePlayers> gameplayers { get; set; }
+
         protected override void OnModelCreating(ModelBuilder mb)
         {
             //GameRoundPlayers
+            mb.Entity<GameRounds>().HasKey(r => new { r.Id });
+            /*mb.Entity<GameRounds>()
+                .HasOne<Games>(r => r.Games)
+                .WithMany(g => g.Id)
+                .HasForeignKey(r => r.Game_Id);*/
+            
 
             //GameRounds
 
             //Games
+            mb.Entity<Games>().HasKey(g => new { g.Id });
 
-            //Location
+            // Location
+            mb.Entity<Location>().HasKey(l => new { l.Id });
 
             //GamePlayers
+            mb.Entity<GamePlayers>()
+                .HasOne<Players>(r => r.player)
+                .WithMany(r => r.gamePlayersList)
+                .HasForeignKey(r => r.playerId);
 
             //Players
+            mb.Entity<Players>()
+                .HasKey(p => new {p.id});
 
             //SoleRoundWinner
 
