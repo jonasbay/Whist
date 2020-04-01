@@ -28,6 +28,10 @@ namespace Whist
             
 
             //GameRoundPlayer
+            mb.Entity<GameRoundPlayers>()
+                .HasOne<GameRounds>(gr => gr.gameRounds)
+                .WithMany(gr => gr.GameRoundPlayersList)
+                .HasForeignKey(gr => gr.gameRoundId);
 
             //Games
             mb.Entity<Games>()
