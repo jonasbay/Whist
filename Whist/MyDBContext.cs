@@ -23,7 +23,7 @@ namespace Whist
 
             //Games
 
-        //Location
+            //Location
 
             //GamePlayers
 
