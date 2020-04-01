@@ -18,12 +18,19 @@ namespace Whist
         protected override void OnModelCreating(ModelBuilder mb)
         {
             //GameRoundPlayers
+            mb.Entity<GameRounds>().HasKey(r => new { r.Id });
+            /*mb.Entity<GameRounds>()
+                .HasOne(r => r.Games)
+                .WithMany(g => g.Id)
+                .HasForeignKey(r => r.Game_Id);*/
 
             //GameRounds
 
             //Games
+            mb.Entity<Games>().HasKey(g => new { g.Id });
 
             // Location
+            mb.Entity<Location>().HasKey(l => new { l.Id });
 
             //GamePlayers
 
