@@ -17,6 +17,6 @@ namespace Whist.Models
         public Games Games { get; set; }
 
         public List<GameRoundPlayers> GameRoundPlayersList { get; set; }
-        List<SoleRoundWinner> SoleRoundWinnerList { get; set; }
+        public List<SoleRoundWinner> SoleRoundWinnerList { get; set; }
     }
 }
