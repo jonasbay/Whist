@@ -13,7 +13,7 @@ namespace Whist.Models
         public bool started { get; set; }
         public bool ended { get; set; }
         public bool updates { get; set; }
-        public List<GameRounds> GameRounds { get; set; }
-        public List<Location> Location { get; set; }
+        public List<GameRounds> GameRoundsList { get; set; }
+        public List<Location> LocationList { get; set; }
     }
 }
