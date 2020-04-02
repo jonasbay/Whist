@@ -7,6 +7,7 @@ namespace Whist.Models
 {
     public class SoleRoundWinner
     {
+        public int Id { get; set; }
         public int GameRoundId { get; set; }
         public int PlayerPos { get; set; }
         public int Tricks { get; set; }

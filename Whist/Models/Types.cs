@@ -8,6 +8,5 @@ namespace Whist.Models
     {
         public int Id { get; set; }
         public GameRounds GameRounds { get; set; }
-        public SoleRound SoleRound { get; set; }
     }
 }

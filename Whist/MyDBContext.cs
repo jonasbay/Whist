@@ -55,6 +55,7 @@ namespace Whist
                 .HasForeignKey(r => r.GameId);
 
             //GamePlayers
+            mb.Entity<GamePlayers>().HasKey(p => new { p.Id });
             mb.Entity<GamePlayers>()
                 .HasOne<Players>(r => r.Player)
                 .WithMany(r => r.GamePlayersListForPlayers)
@@ -82,14 +83,14 @@ namespace Whist
                 .HasForeignKey<GameRounds>();
 
             //SoleRound
-            mb.Entity<SoleRound>().HasNoKey();
+            //mb.Entity<SoleRound>().HasNoKey();
             /*mb.Entity<SoleRound>()
                 .HasOne(s => s.GameRounds)
                 .WithOne(s => s.SoleRound)
                 .HasForeignKey<GameRounds>();*/
 
             //NormalRound
-            mb.Entity<NormalRound>().HasNoKey();
+            //mb.Entity<NormalRound>().HasNoKey();
             /*mb.Entity<NormalRound>()
                 .HasOne(s => s.GameRounds)
                 .WithOne(s => s.NormalRound)
