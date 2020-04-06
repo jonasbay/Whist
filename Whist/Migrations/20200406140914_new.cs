@@ -2,7 +2,7 @@
 
 namespace Whist.Migrations
 {
-    public partial class Whist : Migration
+    public partial class @new : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,7 +12,6 @@ namespace Whist.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    LocationId = table.Column<int>(nullable: false),
                     Description = table.Column<string>(nullable: true),
                     Started = table.Column<bool>(nullable: false),
                     Ended = table.Column<bool>(nullable: false),
@@ -75,27 +74,26 @@ namespace Whist.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "gameplayers",
+                name: "GamePlayers",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     GameId = table.Column<int>(nullable: false),
-                    PlayerPosition = table.Column<int>(nullable: false),
                     PlayerId = table.Column<int>(nullable: false),
                     Points = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_gameplayers", x => x.Id);
+                    table.PrimaryKey("PK_GamePlayers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_gameplayers_Games_GameId",
+                        name: "FK_GamePlayers_Games_GameId",
                         column: x => x.GameId,
                         principalTable: "Games",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_gameplayers_Players_PlayerId",
+                        name: "FK_GamePlayers_Players_PlayerId",
                         column: x => x.PlayerId,
                         principalTable: "Players",
                         principalColumn: "Id",
@@ -109,9 +107,8 @@ namespace Whist.Migrations
                     Id = table.Column<int>(nullable: false),
                     GameId = table.Column<int>(nullable: false),
                     RoundNum = table.Column<int>(nullable: false),
-                    DealerPos = table.Column<int>(nullable: false),
-                    ended = table.Column<bool>(nullable: false),
-                    started = table.Column<bool>(nullable: false)
+                    Ended = table.Column<bool>(nullable: false),
+                    Started = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -158,7 +155,6 @@ namespace Whist.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     GameRoundId = table.Column<int>(nullable: false),
-                    PlayerPos = table.Column<int>(nullable: false),
                     Tricks = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -173,13 +169,13 @@ namespace Whist.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_gameplayers_GameId",
-                table: "gameplayers",
+                name: "IX_GamePlayers_GameId",
+                table: "GamePlayers",
                 column: "GameId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_gameplayers_PlayerId",
-                table: "gameplayers",
+                name: "IX_GamePlayers_PlayerId",
+                table: "GamePlayers",
                 column: "PlayerId");
 
             migrationBuilder.CreateIndex(
@@ -206,7 +202,7 @@ namespace Whist.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "gameplayers");
+                name: "GamePlayers");
 
             migrationBuilder.DropTable(
                 name: "GameRoundPlayers");

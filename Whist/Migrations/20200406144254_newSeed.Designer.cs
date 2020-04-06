@@ -9,8 +9,8 @@ using Whist;
 namespace Whist.Migrations
 {
     [DbContext(typeof(MyDBContext))]
-    [Migration("20200402105620_Whist")]
-    partial class Whist
+    [Migration("20200406144254_newSeed")]
+    partial class newSeed
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -33,9 +33,6 @@ namespace Whist.Migrations
                     b.Property<int>("PlayerId")
                         .HasColumnType("int");
 
-                    b.Property<int>("PlayerPosition")
-                        .HasColumnType("int");
-
                     b.Property<int>("Points")
                         .HasColumnType("int");
 
@@ -45,7 +42,7 @@ namespace Whist.Migrations
 
                     b.HasIndex("PlayerId");
 
-                    b.ToTable("gameplayers");
+                    b.ToTable("GamePlayers");
                 });
 
             modelBuilder.Entity("Whist.Models.GameRoundPlayers", b =>
@@ -76,8 +73,8 @@ namespace Whist.Migrations
                     b.Property<int>("Id")
                         .HasColumnType("int");
 
-                    b.Property<int>("DealerPos")
-                        .HasColumnType("int");
+                    b.Property<bool>("Ended")
+                        .HasColumnType("bit");
 
                     b.Property<int>("GameId")
                         .HasColumnType("int");
@@ -85,10 +82,7 @@ namespace Whist.Migrations
                     b.Property<int>("RoundNum")
                         .HasColumnType("int");
 
-                    b.Property<bool>("ended")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("started")
+                    b.Property<bool>("Started")
                         .HasColumnType("bit");
 
                     b.HasKey("Id");
@@ -110,9 +104,6 @@ namespace Whist.Migrations
 
                     b.Property<bool>("Ended")
                         .HasColumnType("bit");
-
-                    b.Property<int>("LocationId")
-                        .HasColumnType("int");
 
                     b.Property<bool>("Started")
                         .HasColumnType("bit");
@@ -161,6 +152,14 @@ namespace Whist.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Players");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 3,
+                            FirstName = "Hans",
+                            LastName = "Emil"
+                        });
                 });
 
             modelBuilder.Entity("Whist.Models.SoleRoundWinner", b =>
@@ -171,9 +170,6 @@ namespace Whist.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("GameRoundId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PlayerPos")
                         .HasColumnType("int");
 
                     b.Property<int>("Tricks")

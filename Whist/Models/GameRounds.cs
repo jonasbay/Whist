@@ -10,9 +10,8 @@ namespace Whist.Models
         public int Id { get; set; }
         public int GameId { get; set; }
         public int RoundNum { get; set; }
-        public int DealerPos { get; set; }
-        public bool ended { get; set; }
-        public bool started { get; set; }
+        public bool Ended { get; set; }
+        public bool Started { get; set; }
         //public Types RoundType { get; set; }
         public Games Games { get; set; }
         //public SoleRound SoleRound { get; set; }

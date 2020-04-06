@@ -14,5 +14,17 @@ namespace Whist.Models
 
         public Players Player { get; set; }
         public Games Games { get; set; }
+
+        public override string ToString()
+        {
+            //var gamePlayer = new StringBuilder();
+            //foreach (var gp in GamePlayersListForPlayers)
+            //{
+            //    gamePlayer.Append(gp.Player).Append(", ");
+            //}
+
+            return string.Format("Players Id: {0}, Points: {1}", PlayerId, Points);
+        }
+
     }
 }

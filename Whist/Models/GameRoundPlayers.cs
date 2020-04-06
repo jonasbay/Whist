@@ -13,5 +13,6 @@ namespace Whist.Models
         public int Points { get; set; }
 
         public GameRounds GameRounds { get; set; }
+
     }
 }
