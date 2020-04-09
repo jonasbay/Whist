@@ -161,6 +161,5 @@ namespace Whist
                 new SoleRoundWinner { Id = 4, GameRoundId = 7, Tricks = 9 }
                 );
         }
-    }
-    
+    }   
 }
