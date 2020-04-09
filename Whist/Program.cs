@@ -112,7 +112,7 @@ namespace Whist
                 Console.WriteLine($"Game Id: {s.Id}, Number of players: {s.gamePlayersListForGames.Count()}");
                 foreach (var gamePlayer in s.gamePlayersListForGames)
                 {
-                    Console.WriteLine(gamePlayer.Player.FirstName);
+                    Console.WriteLine($"{gamePlayer.Player.FirstName} {gamePlayer.Player.LastName}");
                 }
             }
         }
@@ -123,13 +123,13 @@ namespace Whist
                 .Include(gamesRoundPlayerView => gamesRoundPlayerView.GameRoundPlayersList)
                 .Include(gamesRoundPlayerView => gamesRoundPlayerView.Games)
                 .ToList();
-
+            int i = 0;
             foreach (var s in gamesRoundPlayerView)
             {
                 Console.WriteLine($"Game Id: {s.GameId}, Number of players: {s.GameRoundPlayersList.Count()}, Game round number: {s.RoundNum}");
                 foreach (var gameRoundPlayer in s.GameRoundPlayersList)
                 {
-                    Console.WriteLine($"Points: {gameRoundPlayer.Points}");
+                    Console.WriteLine($"Player {i+1}'s points: {gameRoundPlayer.Points}");
                 }
             }
         }

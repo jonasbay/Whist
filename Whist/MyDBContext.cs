@@ -82,7 +82,7 @@ namespace Whist
                 .WithOne(r => r.Types)
                 .HasForeignKey<GameRounds>();
 
-
+            //--------------------------------------------------
             //Seed data
             mb.Entity<Players>().HasData(
                 new Players { Id = 1, FirstName = "Hans", LastName = "Emil" },
@@ -140,6 +140,38 @@ namespace Whist
                 new GameRoundPlayers { Id = 5, GameRoundId = 6, Points = 6 },
                 new GameRoundPlayers { Id = 6, GameRoundId = 7, Points = 3 }
                 );
+
+            mb.Entity<Types>().HasData(
+                new Types { Id = 1 },
+                new Types { Id = 2},
+                new Types { Id = 3},
+                new Types { Id = 4 },
+                new Types { Id = 5 },
+                new Types { Id = 6 },
+                new Types { Id = 7 }
+                );
+
+            mb.Entity<NormalRound>().HasData(
+                new NormalRound { Id = 1, Tricks = 7, BidAttachment = 2, BitTricks = 5 },
+                new NormalRound { Id = 3, Tricks = 9, BidAttachment = 5, BitTricks = 5 },
+                new NormalRound { Id = 7, Tricks = 7, BidAttachment = 4, BitTricks = 10 }
+                );
+
+            mb.Entity<SoleRound>().HasData(
+                new SoleRound { Id = 2, SoloType = "God" },
+                new SoleRound { Id = 4, SoloType = "Solo" },
+                new SoleRound { Id = 5, SoloType = "Ren solo" },
+                new SoleRound { Id = 6, SoloType = "Ren" }
+                );
+
+            mb.Entity<SoleRoundWinner>().HasData(
+                new SoleRoundWinner { Id = 1, Tricks = 13 },
+                new SoleRoundWinner { Id = 2, Tricks = 10 },
+                new SoleRoundWinner { Id = 3, Tricks = 7 },
+                new SoleRoundWinner { Id = 4, Tricks = 9 }
+                );
+
+            //Ellers mangler: video, readme fil, rediger ER-diagram
         }
     }
     
