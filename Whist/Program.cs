@@ -41,17 +41,9 @@ namespace Whist
                             context.SaveChanges();
                             break;
                         case "g":
-                            if (context.Players.Count() < 4)
-                            {
-                                Console.WriteLine("Not enough players!");
-                                break;
-                            }
-                            else
-                            {
-                                Games games = InputGames(context);
-                                context.Games.Add(games);
-                                context.SaveChanges();
-                            }
+                            Games games = InputGames(context);
+                            context.Games.Add(games);
+                            context.SaveChanges();
                             break;
                         case "r":
                             if (context.Games.Count() == 0)
@@ -129,13 +121,14 @@ namespace Whist
                 .Include(gamesRoundPlayerView => gamesRoundPlayerView.GameRoundPlayersList)
                 .Include(gamesRoundPlayerView => gamesRoundPlayerView.Games)
                 .ToList();
-            int i = 0;
+            int i = 1;
             foreach (var s in gamesRoundPlayerView)
             {
                 Console.WriteLine($"Game Id: {s.GameId}, Number of players: {s.GameRoundPlayersList.Count()}, Game round number: {s.RoundNum}");
                 foreach (var gameRoundPlayer in s.GameRoundPlayersList)
                 {
-                    Console.WriteLine($"Player {i+1}'s points: {gameRoundPlayer.Points}");
+                    Console.WriteLine($"Player {i}'s points: {gameRoundPlayer.Points}");
+                    i++;
                 }
             }
         }
@@ -225,23 +218,6 @@ namespace Whist
                 };
                 context.Location.Add(location);
             }
-
-            //Add GamePlayer
-            Console.WriteLine("Add all your game players: ");
-            games.gamePlayersListForGames = new List<GamePlayers>();
-            for (int i = 0; i < 4; i++)
-            {
-                Players players = findPlayers(context);
-                Console.Write($"Points for player {i+1}: ");
-                int points = Convert.ToInt32(Console.ReadLine());
-                GamePlayers gamePlayers = new GamePlayers()
-                {
-                    Player = players,
-                    Games = games,
-                    Points = points
-                };
-                context.GamePlayers.Add(gamePlayers);
-            }
             return games;
         }
 
@@ -329,7 +305,7 @@ namespace Whist
                 };
             }
             //Add GameRoundPlayers
-            Console.WriteLine("Add all your game round players: ");            
+            Console.WriteLine("Add points your game round players: ");            
             gameRounds.GameRoundPlayersList = new List<GameRoundPlayers>();
             for (int i = 0; i < 4; i++)
             {

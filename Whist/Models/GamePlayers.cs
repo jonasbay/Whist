@@ -14,6 +14,5 @@ namespace Whist.Models
 
         public Players Player { get; set; }
         public Games Games { get; set; }
-
     }
 }
