@@ -24,7 +24,6 @@ namespace Whist
         public DbSet<Players> Players { get; set; }
         public DbSet<SoleRound> SoleRound { get; set; }
         public DbSet<SoleRoundWinner> SoleRoundWinner { get; set; }
-        //public DbSet<Types> Types { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder mb)
@@ -77,7 +76,6 @@ namespace Whist
                 .HasForeignKey(a => a.GameRoundId);
 
             //Types
-            //mb.Entity<Types>().HasKey(r => new { r.Id });
             mb.Entity<GameRounds>()
                 .HasOne(r => r.Types)
                 .WithOne(r => r.GameRounds)
@@ -117,7 +115,6 @@ namespace Whist
                 new GamePlayers { Id = 12, GameId = 1, PlayerId = 2, Points = 500 }
                 );
 
-            //Lav flere locations pr game
             mb.Entity<Location>().HasData(
                 new Location { Id = 1, GameId = 2, Name = "Denmark" },
                 new Location { Id = 2, GameId = 1, Name = "India" },
@@ -163,8 +160,6 @@ namespace Whist
                 new SoleRoundWinner { Id = 3, GameRoundId = 4, Tricks = 7},
                 new SoleRoundWinner { Id = 4, GameRoundId = 7, Tricks = 9 }
                 );
-
-            //Ellers mangler: video, readme fil, rediger ER-diagram
         }
     }
     

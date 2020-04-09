@@ -16,22 +16,5 @@ namespace Whist.Models
         public List<GameRounds> GameRoundsList { get; set; }
         public List<Location> LocationList { get; set; }
         public List<GamePlayers> gamePlayersListForGames { get; set; }
-
-        //public override string ToString()
-        //{
-        //    //var gamePlayer = new StringBuilder();
-        //    //foreach (var gp in gamePlayersListForGames)
-        //    //{
-        //    //    gamePlayer.Append(gp.).Append(", ");
-        //    //}
-
-        //    var gamePlayer = "";
-        //    if (gamePlayersListForGames != null)
-        //    {
-        //        gamePlayer = string.Join("; ", gamePlayersListForGames);
-        //    }
-
-        //    return string.Format("Game Id: {0}, PlayerId: {1}", Id, gamePlayer);
-        //}
     }
 }

@@ -395,6 +395,5 @@ namespace Whist
                 return YesNo(yesNo);
             }
         }
-
     }
 }
