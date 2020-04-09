@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Whist;
 
 namespace Whist.Migrations
 {
     [DbContext(typeof(MyDBContext))]
-    partial class MyDBContextModelSnapshot : ModelSnapshot
+    [Migration("20200409082407_SeedData13")]
+    partial class SeedData13
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -351,19 +353,13 @@ namespace Whist.Migrations
                         {
                             Id = 2,
                             GameId = 1,
-                            Name = "India"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            GameId = 1,
                             Name = "USA"
                         },
                         new
                         {
-                            Id = 4,
+                            Id = 3,
                             GameId = 3,
-                            Name = "China"
+                            Name = "Kina"
                         });
                 });
 

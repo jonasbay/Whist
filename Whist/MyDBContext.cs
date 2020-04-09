@@ -12,7 +12,7 @@ namespace Whist
         protected override void OnConfiguring(DbContextOptionsBuilder ob)
         {
             // For SQLServer file, this is
-            ob.UseSqlServer("Data Source=127.0.0.1,1433;Database=Whist_Game;User ID=SA;Password=SecurePassword1!");
+            ob.UseSqlServer("Data Source=127.0.0.1,1433;Database=Games_Whist;User ID=SA;Password=SecurePassword1!");
         }
 
         public DbSet<GamePlayers> GamePlayers { get; set; }
@@ -24,7 +24,7 @@ namespace Whist
         public DbSet<Players> Players { get; set; }
         public DbSet<SoleRound> SoleRound { get; set; }
         public DbSet<SoleRoundWinner> SoleRoundWinner { get; set; }
-        public DbSet<Types> Types { get; set; }
+        //public DbSet<Types> Types { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder mb)
@@ -67,9 +67,10 @@ namespace Whist
 
             //Players
             mb.Entity<Players>()
-                .HasKey(p => new {id = p.Id});
+                .HasKey(p => new { p.Id});
 
             //SoleRoundWinner
+            mb.Entity<SoleRoundWinner>().HasKey(w => new { w.Id });
             mb.Entity<SoleRoundWinner>()
                 .HasOne<GameRounds>(a => a.GameRound)
                 .WithMany(a => a.SoleRoundWinnerList)
@@ -77,10 +78,10 @@ namespace Whist
 
             //Types
             //mb.Entity<Types>().HasKey(r => new { r.Id });
-            mb.Entity<Types>()
-                .HasOne(r => r.GameRounds)
-                .WithOne(r => r.Types)
-                .HasForeignKey<GameRounds>();
+            mb.Entity<GameRounds>()
+                .HasOne(r => r.Types)
+                .WithOne(r => r.GameRounds)
+                .HasForeignKey<Types>();
 
             //--------------------------------------------------
             //Seed data
@@ -96,7 +97,7 @@ namespace Whist
                 );
 
             mb.Entity<Games>().HasData(
-                new Games { Id = 1, Description = "Hallelujah", Started=true, Ended=false, Updates=true},
+                new Games { Id = 1, Description = "Hallelujah", Started = true, Ended = false, Updates = true },
                 new Games { Id = 2, Description = "Best Game", Started = false, Ended = false, Updates = true },
                 new Games { Id = 3, Description = "Focused", Started = true, Ended = true, Updates = false }
                 );
@@ -116,14 +117,16 @@ namespace Whist
                 new GamePlayers { Id = 12, GameId = 1, PlayerId = 2, Points = 500 }
                 );
 
+            //Lav flere locations pr game
             mb.Entity<Location>().HasData(
                 new Location { Id = 1, GameId = 2, Name = "Denmark" },
-                new Location { Id = 2, GameId = 1, Name = "USA" },
-                new Location { Id = 3, GameId = 3, Name = "Kina" }
+                new Location { Id = 2, GameId = 1, Name = "India" },
+                new Location { Id = 3, GameId = 1, Name = "USA" },
+                new Location { Id = 4, GameId = 3, Name = "China" }
                 );
 
             mb.Entity<GameRounds>().HasData(
-                new GameRounds { Id = 1, GameId = 2, Started = true, Ended=false, RoundNum = 1 },
+                new GameRounds { Id = 1, GameId = 2, Started = true, Ended = false, RoundNum = 1 },
                 new GameRounds { Id = 2, GameId = 1, Started = false, Ended = false, RoundNum = 1 },
                 new GameRounds { Id = 3, GameId = 3, Started = true, Ended = false, RoundNum = 1 },
                 new GameRounds { Id = 4, GameId = 1, Started = false, Ended = false, RoundNum = 2 },
@@ -132,8 +135,21 @@ namespace Whist
                 new GameRounds { Id = 7, GameId = 3, Started = true, Ended = false, RoundNum = 2 }
                 );
 
+            mb.Entity<SoleRound>().HasData(
+                new SoleRound { Id = 1, SoloType = "Good" },
+                new SoleRound { Id = 4, SoloType = "Solo" },
+                new SoleRound { Id = 5, SoloType = "Clean solo" },
+                new SoleRound { Id = 6, SoloType = "Strong Oak" }
+             );
+
+            mb.Entity<NormalRound>().HasData(
+                new NormalRound { Id = 2, Tricks = 7, BidAttachment = 2, BitTricks = 5 },
+                new NormalRound { Id = 3, Tricks = 9, BidAttachment = 5, BitTricks = 5 },
+                new NormalRound { Id = 7, Tricks = 7, BidAttachment = 4, BitTricks = 10 }
+                );
+
             mb.Entity<GameRoundPlayers>().HasData(
-                new GameRoundPlayers { Id = 1, GameRoundId = 1, Points = 10},
+                new GameRoundPlayers { Id = 1, GameRoundId = 1, Points = 10 },
                 new GameRoundPlayers { Id = 2, GameRoundId = 2, Points = 4 },
                 new GameRoundPlayers { Id = 3, GameRoundId = 4, Points = 2 },
                 new GameRoundPlayers { Id = 4, GameRoundId = 3, Points = 1 },
@@ -141,34 +157,11 @@ namespace Whist
                 new GameRoundPlayers { Id = 6, GameRoundId = 7, Points = 3 }
                 );
 
-            mb.Entity<Types>().HasData(
-                new Types { Id = 1 },
-                new Types { Id = 2},
-                new Types { Id = 3},
-                new Types { Id = 4 },
-                new Types { Id = 5 },
-                new Types { Id = 6 },
-                new Types { Id = 7 }
-                );
-
-            mb.Entity<NormalRound>().HasData(
-                new NormalRound { Id = 1, Tricks = 7, BidAttachment = 2, BitTricks = 5 },
-                new NormalRound { Id = 3, Tricks = 9, BidAttachment = 5, BitTricks = 5 },
-                new NormalRound { Id = 7, Tricks = 7, BidAttachment = 4, BitTricks = 10 }
-                );
-
-            mb.Entity<SoleRound>().HasData(
-                new SoleRound { Id = 2, SoloType = "God" },
-                new SoleRound { Id = 4, SoloType = "Solo" },
-                new SoleRound { Id = 5, SoloType = "Ren solo" },
-                new SoleRound { Id = 6, SoloType = "Ren" }
-                );
-
             mb.Entity<SoleRoundWinner>().HasData(
-                new SoleRoundWinner { Id = 1, Tricks = 13 },
-                new SoleRoundWinner { Id = 2, Tricks = 10 },
-                new SoleRoundWinner { Id = 3, Tricks = 7 },
-                new SoleRoundWinner { Id = 4, Tricks = 9 }
+                new SoleRoundWinner { Id = 1, GameRoundId = 1, Tricks = 13 },
+                new SoleRoundWinner { Id = 2, GameRoundId = 3, Tricks = 10 },
+                new SoleRoundWinner { Id = 3, GameRoundId = 4, Tricks = 7},
+                new SoleRoundWinner { Id = 4, GameRoundId = 7, Tricks = 9 }
                 );
 
             //Ellers mangler: video, readme fil, rediger ER-diagram

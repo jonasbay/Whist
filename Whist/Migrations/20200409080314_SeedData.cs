@@ -2,7 +2,7 @@
 
 namespace Whist.Migrations
 {
-    public partial class @new : Migration
+    public partial class SeedData : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -37,20 +37,25 @@ namespace Whist.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Types",
+                name: "GameRounds",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Discriminator = table.Column<string>(nullable: false),
-                    Tricks = table.Column<int>(nullable: true),
-                    BidAttachment = table.Column<int>(nullable: true),
-                    BitTricks = table.Column<int>(nullable: true),
-                    SoloType = table.Column<string>(nullable: true)
+                    GameId = table.Column<int>(nullable: false),
+                    RoundNum = table.Column<int>(nullable: false),
+                    Ended = table.Column<bool>(nullable: false),
+                    Started = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Types", x => x.Id);
+                    table.PrimaryKey("PK_GameRounds", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_GameRounds_Games_GameId",
+                        column: x => x.GameId,
+                        principalTable: "Games",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -101,40 +106,12 @@ namespace Whist.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "GameRounds",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false),
-                    GameId = table.Column<int>(nullable: false),
-                    RoundNum = table.Column<int>(nullable: false),
-                    Ended = table.Column<bool>(nullable: false),
-                    Started = table.Column<bool>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_GameRounds", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_GameRounds_Games_GameId",
-                        column: x => x.GameId,
-                        principalTable: "Games",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_GameRounds_Types_Id",
-                        column: x => x.Id,
-                        principalTable: "Types",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "GameRoundPlayers",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     GameRoundId = table.Column<int>(nullable: false),
-                    Bye = table.Column<int>(nullable: false),
                     Points = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -166,6 +143,43 @@ namespace Whist.Migrations
                         principalTable: "GameRounds",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Types",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false),
+                    Discriminator = table.Column<string>(nullable: false),
+                    Tricks = table.Column<int>(nullable: true),
+                    BidAttachment = table.Column<int>(nullable: true),
+                    BitTricks = table.Column<int>(nullable: true),
+                    SoloType = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Types", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Types_GameRounds_Id",
+                        column: x => x.Id,
+                        principalTable: "GameRounds",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Players",
+                columns: new[] { "Id", "FirstName", "LastName" },
+                values: new object[,]
+                {
+                    { 1, "Hans", "Emil" },
+                    { 2, "Alex", "Hansen" },
+                    { 3, "Joe", "Moe" },
+                    { 4, "Gurli", "Kristensen" },
+                    { 5, "Henriette", "Bohl" },
+                    { 6, "Top", "Gunn" },
+                    { 7, "Palle", "Henriksen" },
+                    { 8, "Julie", "Jensen" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -214,6 +228,9 @@ namespace Whist.Migrations
                 name: "SoleRoundWinner");
 
             migrationBuilder.DropTable(
+                name: "Types");
+
+            migrationBuilder.DropTable(
                 name: "Players");
 
             migrationBuilder.DropTable(
@@ -221,9 +238,6 @@ namespace Whist.Migrations
 
             migrationBuilder.DropTable(
                 name: "Games");
-
-            migrationBuilder.DropTable(
-                name: "Types");
         }
     }
 }

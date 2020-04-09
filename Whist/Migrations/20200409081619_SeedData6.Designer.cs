@@ -9,8 +9,8 @@ using Whist;
 namespace Whist.Migrations
 {
     [DbContext(typeof(MyDBContext))]
-    [Migration("20200406140914_new")]
-    partial class @new
+    [Migration("20200409081619_SeedData6")]
+    partial class SeedData6
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -43,6 +43,92 @@ namespace Whist.Migrations
                     b.HasIndex("PlayerId");
 
                     b.ToTable("GamePlayers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            GameId = 2,
+                            PlayerId = 7,
+                            Points = 3
+                        },
+                        new
+                        {
+                            Id = 2,
+                            GameId = 2,
+                            PlayerId = 3,
+                            Points = 4
+                        },
+                        new
+                        {
+                            Id = 3,
+                            GameId = 2,
+                            PlayerId = 1,
+                            Points = 7
+                        },
+                        new
+                        {
+                            Id = 4,
+                            GameId = 2,
+                            PlayerId = 5,
+                            Points = 6
+                        },
+                        new
+                        {
+                            Id = 5,
+                            GameId = 3,
+                            PlayerId = 4,
+                            Points = 5
+                        },
+                        new
+                        {
+                            Id = 6,
+                            GameId = 3,
+                            PlayerId = 8,
+                            Points = 4
+                        },
+                        new
+                        {
+                            Id = 7,
+                            GameId = 3,
+                            PlayerId = 6,
+                            Points = 8
+                        },
+                        new
+                        {
+                            Id = 8,
+                            GameId = 3,
+                            PlayerId = 2,
+                            Points = 6
+                        },
+                        new
+                        {
+                            Id = 9,
+                            GameId = 1,
+                            PlayerId = 3,
+                            Points = 6
+                        },
+                        new
+                        {
+                            Id = 10,
+                            GameId = 1,
+                            PlayerId = 4,
+                            Points = 10
+                        },
+                        new
+                        {
+                            Id = 11,
+                            GameId = 1,
+                            PlayerId = 5,
+                            Points = 8
+                        },
+                        new
+                        {
+                            Id = 12,
+                            GameId = 1,
+                            PlayerId = 2,
+                            Points = 500
+                        });
                 });
 
             modelBuilder.Entity("Whist.Models.GameRoundPlayers", b =>
@@ -51,9 +137,6 @@ namespace Whist.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("Bye")
-                        .HasColumnType("int");
 
                     b.Property<int>("GameRoundId")
                         .HasColumnType("int");
@@ -71,7 +154,9 @@ namespace Whist.Migrations
             modelBuilder.Entity("Whist.Models.GameRounds", b =>
                 {
                     b.Property<int>("Id")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<bool>("Ended")
                         .HasColumnType("bit");
@@ -90,6 +175,16 @@ namespace Whist.Migrations
                     b.HasIndex("GameId");
 
                     b.ToTable("GameRounds");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Ended = false,
+                            GameId = 2,
+                            RoundNum = 1,
+                            Started = true
+                        });
                 });
 
             modelBuilder.Entity("Whist.Models.Games", b =>
@@ -114,6 +209,32 @@ namespace Whist.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Games");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "Hallelujah",
+                            Ended = false,
+                            Started = true,
+                            Updates = true
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Description = "Best Game",
+                            Ended = false,
+                            Started = false,
+                            Updates = true
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Description = "Focused",
+                            Ended = true,
+                            Started = true,
+                            Updates = false
+                        });
                 });
 
             modelBuilder.Entity("Whist.Models.Location", b =>
@@ -134,6 +255,26 @@ namespace Whist.Migrations
                     b.HasIndex("GameId");
 
                     b.ToTable("Location");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            GameId = 2,
+                            Name = "Denmark"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            GameId = 1,
+                            Name = "USA"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            GameId = 3,
+                            Name = "Kina"
+                        });
                 });
 
             modelBuilder.Entity("Whist.Models.Players", b =>
@@ -152,6 +293,56 @@ namespace Whist.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Players");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            FirstName = "Hans",
+                            LastName = "Emil"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            FirstName = "Alex",
+                            LastName = "Hansen"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            FirstName = "Joe",
+                            LastName = "Moe"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            FirstName = "Gurli",
+                            LastName = "Kristensen"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            FirstName = "Henriette",
+                            LastName = "Bohl"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            FirstName = "Top",
+                            LastName = "Gunn"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            FirstName = "Palle",
+                            LastName = "Henriksen"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            FirstName = "Julie",
+                            LastName = "Jensen"
+                        });
                 });
 
             modelBuilder.Entity("Whist.Models.SoleRoundWinner", b =>
@@ -177,9 +368,7 @@ namespace Whist.Migrations
             modelBuilder.Entity("Whist.Models.Types", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<string>("Discriminator")
                         .IsRequired()
@@ -216,6 +405,13 @@ namespace Whist.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasDiscriminator().HasValue("SoleRound");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            SoloType = "Good"
+                        });
                 });
 
             modelBuilder.Entity("Whist.Models.GamePlayers", b =>
@@ -249,12 +445,6 @@ namespace Whist.Migrations
                         .HasForeignKey("GameId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("Whist.Models.Types", "Types")
-                        .WithOne("GameRounds")
-                        .HasForeignKey("Whist.Models.GameRounds", "Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Whist.Models.Location", b =>
@@ -271,6 +461,15 @@ namespace Whist.Migrations
                     b.HasOne("Whist.Models.GameRounds", "GameRound")
                         .WithMany("SoleRoundWinnerList")
                         .HasForeignKey("GameRoundId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Whist.Models.Types", b =>
+                {
+                    b.HasOne("Whist.Models.GameRounds", "GameRounds")
+                        .WithOne("Types")
+                        .HasForeignKey("Whist.Models.Types", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

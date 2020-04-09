@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Whist;
 
 namespace Whist.Migrations
 {
     [DbContext(typeof(MyDBContext))]
-    partial class MyDBContextModelSnapshot : ModelSnapshot
+    [Migration("20200409080702_SeedData3")]
+    partial class SeedData3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -147,44 +149,6 @@ namespace Whist.Migrations
                     b.HasIndex("GameRoundId");
 
                     b.ToTable("GameRoundPlayers");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            GameRoundId = 1,
-                            Points = 10
-                        },
-                        new
-                        {
-                            Id = 2,
-                            GameRoundId = 2,
-                            Points = 4
-                        },
-                        new
-                        {
-                            Id = 3,
-                            GameRoundId = 4,
-                            Points = 2
-                        },
-                        new
-                        {
-                            Id = 4,
-                            GameRoundId = 3,
-                            Points = 1
-                        },
-                        new
-                        {
-                            Id = 5,
-                            GameRoundId = 6,
-                            Points = 6
-                        },
-                        new
-                        {
-                            Id = 6,
-                            GameRoundId = 7,
-                            Points = 3
-                        });
                 });
 
             modelBuilder.Entity("Whist.Models.GameRounds", b =>
@@ -211,64 +175,6 @@ namespace Whist.Migrations
                     b.HasIndex("GameId");
 
                     b.ToTable("GameRounds");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Ended = false,
-                            GameId = 2,
-                            RoundNum = 1,
-                            Started = true
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Ended = false,
-                            GameId = 1,
-                            RoundNum = 1,
-                            Started = false
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Ended = false,
-                            GameId = 3,
-                            RoundNum = 1,
-                            Started = true
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Ended = false,
-                            GameId = 1,
-                            RoundNum = 2,
-                            Started = false
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Ended = false,
-                            GameId = 2,
-                            RoundNum = 2,
-                            Started = true
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Ended = false,
-                            GameId = 1,
-                            RoundNum = 3,
-                            Started = false
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Ended = false,
-                            GameId = 3,
-                            RoundNum = 2,
-                            Started = true
-                        });
                 });
 
             modelBuilder.Entity("Whist.Models.Games", b =>
@@ -339,32 +245,6 @@ namespace Whist.Migrations
                     b.HasIndex("GameId");
 
                     b.ToTable("Location");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            GameId = 2,
-                            Name = "Denmark"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            GameId = 1,
-                            Name = "India"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            GameId = 1,
-                            Name = "USA"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            GameId = 3,
-                            Name = "China"
-                        });
                 });
 
             modelBuilder.Entity("Whist.Models.Players", b =>
@@ -453,32 +333,6 @@ namespace Whist.Migrations
                     b.HasIndex("GameRoundId");
 
                     b.ToTable("SoleRoundWinner");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            GameRoundId = 1,
-                            Tricks = 13
-                        },
-                        new
-                        {
-                            Id = 2,
-                            GameRoundId = 3,
-                            Tricks = 10
-                        },
-                        new
-                        {
-                            Id = 3,
-                            GameRoundId = 4,
-                            Tricks = 7
-                        },
-                        new
-                        {
-                            Id = 4,
-                            GameRoundId = 7,
-                            Tricks = 9
-                        });
                 });
 
             modelBuilder.Entity("Whist.Models.Types", b =>
@@ -511,29 +365,6 @@ namespace Whist.Migrations
                         .HasColumnType("int");
 
                     b.HasDiscriminator().HasValue("NormalRound");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 2,
-                            BidAttachment = 2,
-                            BitTricks = 5,
-                            Tricks = 7
-                        },
-                        new
-                        {
-                            Id = 3,
-                            BidAttachment = 5,
-                            BitTricks = 5,
-                            Tricks = 9
-                        },
-                        new
-                        {
-                            Id = 7,
-                            BidAttachment = 4,
-                            BitTricks = 10,
-                            Tricks = 7
-                        });
                 });
 
             modelBuilder.Entity("Whist.Models.SoleRound", b =>
@@ -544,28 +375,6 @@ namespace Whist.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasDiscriminator().HasValue("SoleRound");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            SoloType = "Good"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            SoloType = "Solo"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            SoloType = "Clean solo"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            SoloType = "Strong Oak"
-                        });
                 });
 
             modelBuilder.Entity("Whist.Models.GamePlayers", b =>

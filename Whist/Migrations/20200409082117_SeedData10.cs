@@ -2,22 +2,22 @@
 
 namespace Whist.Migrations
 {
-    public partial class newSeed : Migration
+    public partial class SeedData10 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.InsertData(
-                table: "Players",
-                columns: new[] { "Id", "FirstName", "LastName" },
-                values: new object[] { 3, "Hans", "Emil" });
+                table: "GameRoundPlayers",
+                columns: new[] { "Id", "GameRoundId", "Points" },
+                values: new object[] { 1, 1, 10 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DeleteData(
-                table: "Players",
+                table: "GameRoundPlayers",
                 keyColumn: "Id",
-                keyValue: 3);
+                keyValue: 1);
         }
     }
 }

@@ -26,6 +26,7 @@ namespace Whist
                 Console.WriteLine("Option 1: See list of Games (type gl)");
                 Console.WriteLine("Option 2: See list of Games with players (type gp)");
                 Console.WriteLine("Option 3: See list of Games round players and points (type gr)");
+                Console.WriteLine("Option 4: See list of player ids (type pl)");
 
                 while (true)
                 {
@@ -42,12 +43,14 @@ namespace Whist
                         case "g":
                             if (context.Players.Count() < 4)
                             {
-                                Console.WriteLine("No enough players!");
+                                Console.WriteLine("Not enough players!");
                                 break;
                             }
                             else
                             {
                                 Games games = InputGames(context);
+                                context.Games.Add(games);
+                                context.SaveChanges();
                             }
                             break;
                         case "r":
@@ -89,6 +92,9 @@ namespace Whist
                             break;
                         case "gr":
                             ListGameRoundPlayers(context);
+                            break;
+                        case "pl":
+                            ListPlayers(context);
                             break;
 
                             //Mangler lister
@@ -145,6 +151,17 @@ namespace Whist
             foreach (var s in games)
             {
                 Console.WriteLine(s);
+            }
+        }
+
+        private static void ListPlayers(MyDBContext context)
+        {
+            Console.WriteLine("Outputting all player ids");
+
+            var players = context.Players.ToList();
+            foreach (var s in players)
+            {
+                Console.WriteLine($"{s.Id}: {s.FirstName} {s.LastName}");
             }
         }
 
@@ -316,13 +333,10 @@ namespace Whist
             gameRounds.GameRoundPlayersList = new List<GameRoundPlayers>();
             for (int i = 0; i < 4; i++)
             {
-                Console.Write($"Player {i + 1}'s bye: ");
-                int bye = Convert.ToInt32(Console.ReadLine());
                 Console.Write($"Player {i + 1}'s points: ");
                 int points = Convert.ToInt32(Console.ReadLine());
                 GameRoundPlayers gameRoundPlayers = new GameRoundPlayers()
                 {
-                    Bye = bye,
                     Points = points,
                     GameRounds = gameRounds
                 };

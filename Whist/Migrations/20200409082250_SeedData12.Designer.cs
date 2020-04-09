@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Whist;
 
 namespace Whist.Migrations
 {
     [DbContext(typeof(MyDBContext))]
-    partial class MyDBContextModelSnapshot : ModelSnapshot
+    [Migration("20200409082250_SeedData12")]
+    partial class SeedData12
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -351,19 +353,13 @@ namespace Whist.Migrations
                         {
                             Id = 2,
                             GameId = 1,
-                            Name = "India"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            GameId = 1,
                             Name = "USA"
                         },
                         new
                         {
-                            Id = 4,
+                            Id = 3,
                             GameId = 3,
-                            Name = "China"
+                            Name = "Kina"
                         });
                 });
 
@@ -460,24 +456,6 @@ namespace Whist.Migrations
                             Id = 1,
                             GameRoundId = 1,
                             Tricks = 13
-                        },
-                        new
-                        {
-                            Id = 2,
-                            GameRoundId = 3,
-                            Tricks = 10
-                        },
-                        new
-                        {
-                            Id = 3,
-                            GameRoundId = 4,
-                            Tricks = 7
-                        },
-                        new
-                        {
-                            Id = 4,
-                            GameRoundId = 7,
-                            Tricks = 9
                         });
                 });
 

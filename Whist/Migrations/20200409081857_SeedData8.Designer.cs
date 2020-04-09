@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Whist;
 
 namespace Whist.Migrations
 {
     [DbContext(typeof(MyDBContext))]
-    partial class MyDBContextModelSnapshot : ModelSnapshot
+    [Migration("20200409081857_SeedData8")]
+    partial class SeedData8
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -147,44 +149,6 @@ namespace Whist.Migrations
                     b.HasIndex("GameRoundId");
 
                     b.ToTable("GameRoundPlayers");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            GameRoundId = 1,
-                            Points = 10
-                        },
-                        new
-                        {
-                            Id = 2,
-                            GameRoundId = 2,
-                            Points = 4
-                        },
-                        new
-                        {
-                            Id = 3,
-                            GameRoundId = 4,
-                            Points = 2
-                        },
-                        new
-                        {
-                            Id = 4,
-                            GameRoundId = 3,
-                            Points = 1
-                        },
-                        new
-                        {
-                            Id = 5,
-                            GameRoundId = 6,
-                            Points = 6
-                        },
-                        new
-                        {
-                            Id = 6,
-                            GameRoundId = 7,
-                            Points = 3
-                        });
                 });
 
             modelBuilder.Entity("Whist.Models.GameRounds", b =>
@@ -351,19 +315,13 @@ namespace Whist.Migrations
                         {
                             Id = 2,
                             GameId = 1,
-                            Name = "India"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            GameId = 1,
                             Name = "USA"
                         },
                         new
                         {
-                            Id = 4,
+                            Id = 3,
                             GameId = 3,
-                            Name = "China"
+                            Name = "Kina"
                         });
                 });
 
@@ -453,32 +411,6 @@ namespace Whist.Migrations
                     b.HasIndex("GameRoundId");
 
                     b.ToTable("SoleRoundWinner");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            GameRoundId = 1,
-                            Tricks = 13
-                        },
-                        new
-                        {
-                            Id = 2,
-                            GameRoundId = 3,
-                            Tricks = 10
-                        },
-                        new
-                        {
-                            Id = 3,
-                            GameRoundId = 4,
-                            Tricks = 7
-                        },
-                        new
-                        {
-                            Id = 4,
-                            GameRoundId = 7,
-                            Tricks = 9
-                        });
                 });
 
             modelBuilder.Entity("Whist.Models.Types", b =>
@@ -526,13 +458,6 @@ namespace Whist.Migrations
                             BidAttachment = 5,
                             BitTricks = 5,
                             Tricks = 9
-                        },
-                        new
-                        {
-                            Id = 7,
-                            BidAttachment = 4,
-                            BitTricks = 10,
-                            Tricks = 7
                         });
                 });
 
@@ -550,21 +475,6 @@ namespace Whist.Migrations
                         {
                             Id = 1,
                             SoloType = "Good"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            SoloType = "Solo"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            SoloType = "Clean solo"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            SoloType = "Strong Oak"
                         });
                 });
 
