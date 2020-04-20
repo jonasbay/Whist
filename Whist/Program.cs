@@ -113,7 +113,7 @@ namespace Whist
                     Console.WriteLine($"{gamePlayer.Player.FirstName} {gamePlayer.Player.LastName}");
                 }
             }
-        }
+        }//
 
         private static void ListGameRoundPlayers(MyDBContext context)
         {
