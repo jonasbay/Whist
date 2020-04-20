@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Whist.Models;
+using Whist.Data;
 
 namespace Whist
 {

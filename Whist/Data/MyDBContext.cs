@@ -5,15 +5,15 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Whist.Models;
 
-namespace Whist
+namespace Whist.Data
 {
     public class MyDBContext : DbContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder ob)
         {
             // For SQLServer file, this is
-            ob.UseSqlServer("Data Source=127.0.0.1,1433;Database=Games_Whist;User ID=SA;Password=SecurePassword1!");
-            //ob.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=Games_Whist");
+            //ob.UseSqlServer("Data Source=127.0.0.1,1433;Database=Games_Whist;User ID=SA;Password=SecurePassword1!");
+            ob.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=Games_Whist");
         }
 
         public DbSet<GamePlayers> GamePlayers { get; set; }
